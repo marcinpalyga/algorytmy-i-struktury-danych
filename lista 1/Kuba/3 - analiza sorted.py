@@ -4,28 +4,26 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 import numpy as np
 
-sizes = [i for i in range(1,21)]
-times = [[0]*20]*20
+sizes = [i for i in range(1,51)]
+times = [[0]*50]*50
 
-for i in range(20):
-    for j in sizes:
-        random_array = [random.randint(-20,20) for n in range(j)]
+for i in range(50):
+    for n, j in enumerate(sizes):
+        random_array = [random.randint(-20,20) for m in range(j)]
 
         start = time.time()
         sorted(random_array)
         stop = time.time()
 
-        times[i][j] = stop-start
+        times[i][n] = stop-start
 
+print(times)
 mean = []
-for i in range(20):
+for i in range(50):
     summation = 0
-    for j in range(20):
+    for j in range(50):
         summation += times[i][j]
-    
-    mean.append(summation/20)
-
-print(len(mean), len(sizes))
+    mean.append(summation/50)
 
 
 plt.scatter(sizes, mean, c='r', s=10)

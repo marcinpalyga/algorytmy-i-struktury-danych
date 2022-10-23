@@ -45,7 +45,6 @@ def example4(A, B): # assume that A and B have equal length
 
 import random
 import time
-from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -53,7 +52,7 @@ example1_time, example2_time, example3_time, example4_time = [], [], [], []
 sizes = [10, 20, 30, 40, 50, 100, 200, 500, 1000]
 
 
-for i in tqdm(sizes):
+for i in sizes:
     example_list = [random.randint(-20, 20) for j in range(i)]
     example_additional_list = [random.randint(-20, 20) for j in range(i)]
 
@@ -77,19 +76,8 @@ for i in tqdm(sizes):
     stop = time.time()
     example4_time.append(stop-start)
 
+    print(f'Rozmiar tablicy: {i}')
 
-fig, ax = plt.subplots(2, 2, figsize=(8,6))
-
-ax[0, 0].scatter(sizes, example1_time, s=10, c='r')
-ax[0, 1].scatter(sizes, example2_time, s=10, c='r')
-ax[1, 0].scatter(sizes, example3_time, s=10, c='r')
-ax[1, 1].scatter(sizes, example4_time, s=10, c='r')
-
-ax[0,0].set_title("example 1")
-ax[0,1].set_title("example 2")
-ax[1,0].set_title("example 3")
-ax[1,1].set_title("example 4")
-plt.show()
 
 #hipotheses
 from scipy.optimize import curve_fit
@@ -105,8 +93,7 @@ popt_4, pcov_4 = curve_fit(func_4, sizes, example4_time)
 
 xs = np.arange(1,2000)
 
-plt.clf()
-fig, ax = plt.subplots(2, 2, figsize=(8,6))
+fig, ax = plt.subplots(2, 2, figsize=(10,8))
 
 ax[0,0].scatter(sizes, example1_time, s=10, c='r')
 ax[0,0].plot(xs, func_1_2(xs, popt_1[0], popt_1[1]))
