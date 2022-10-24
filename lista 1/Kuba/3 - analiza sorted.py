@@ -5,7 +5,8 @@ from scipy.optimize import curve_fit
 import numpy as np
 
 sizes = [i for i in range(1,51)]
-times = [[0]*50]*50
+times = [[0]*50 for i in range(50)]
+print(len(times))
 
 for i in range(50):
     for n, j in enumerate(sizes):
@@ -17,29 +18,33 @@ for i in range(50):
 
         times[i][n] = stop-start
 
-print(times)
 mean = []
 for i in range(50):
     summation = 0
     for j in range(50):
-        summation += times[i][j]
-    mean.append(summation/50)
+        summation += times[j][i]
+    mean.append(summation)
+
+    
 
 
-plt.scatter(sizes, mean, c='r', s=10)
-plt.show()
-
-'''
-#hipoteza
-def func(x, a, b):  return a*x + b
-popt, pcov = curve_fit(func, sizes, times)
-
-a, b = popt
-x = np.arange(1, 2000)
-
-plt.plot(x, func(x, a, b), label='model')
-plt.scatter(sizes, times, c='r', s=10, label='dane')
+plt.scatter(sizes, mean, c='r', s=10, label='dane')
 plt.xlabel('Rozmiar tablicy')
 plt.ylabel('Czas dzialania programu')
 plt.legend()
-plt.show()'''
+plt.show()
+
+
+#hipoteza
+def func(x, a, b):  return a*x*np.log(x) + b
+popt, pcov = curve_fit(func, sizes, mean)
+
+a, b = popt
+x = np.arange(1, 150)
+
+plt.plot(x, func(x, a, b), label='model')
+plt.scatter(sizes, mean, c='r', s=10, label='dane')
+plt.xlabel('Rozmiar tablicy')
+plt.ylabel('Czas dzialania programu')
+plt.legend()
+plt.show()
