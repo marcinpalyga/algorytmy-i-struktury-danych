@@ -37,7 +37,7 @@ def horner(n, x):
     coefficients = [random.randint(-10,10) for i in range(n+1)]
     result = 0
     start = time.process_time()
-    for i in range(n, 1, -1):
+    for i in range(n, 0, -1):
         bracket = coefficients[n-1] + x*coefficients[n]
         result += bracket
     end = time.process_time()
