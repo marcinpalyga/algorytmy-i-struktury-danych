@@ -34,9 +34,9 @@ sizes = [i for i in range(1, 100, 2)]
 for i in sizes:
     s = [random.randint(-50, 50) for i in range(i)]
 
-    start = time.time()
+    start = time.perf_counter()
     findbiggest(s)
-    stop = time.time()
+    stop = time.perf_counter()
 
     times.append(stop-start)
 
