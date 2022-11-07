@@ -4,7 +4,6 @@ def minmax_rec(S):
         else:               return [S[1], S[0]]
 
     first_el, next_el = S[0], minmax_rec(S[1:])
-    print(next_el)
     if first_el > next_el[0]:   return [first_el, next_el[1]]   #zwracanie wiekszego elementu z trzech ostatnich liczb
     if first_el < next_el[1]:   return [next_el[0], first_el]   #zwracanie mniejszego elementu z trzech ostatnich liczb
     else:                       return next_el                  #trzeci od konca jest mniejszy od najwiekszego i wiekszy od najmniejszego
