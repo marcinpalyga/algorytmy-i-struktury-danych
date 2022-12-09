@@ -26,13 +26,15 @@ class Queue:
         self._data[self._front] = None
         self._front = (self._front+1)%len(self._data)
         self._size -= 1
+
+        self.cleaning()
         return value
     
     def enqueue(self,e):
         self.cleaning()
+
         if self._size == len(self._data):
             self._resize(1+len(self._data))
-
         avail = (self._front + self._size)%len(self._data)
         self._data[avail] = e
         self._size += 1
@@ -57,3 +59,8 @@ Q = Queue()
 
 for i in range(15):
     Q.enqueue(5)
+    print(Q._data)
+
+for i in range(15):
+    Q.dequeue()
+    print( Q._data )

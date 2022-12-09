@@ -1,21 +1,44 @@
 import random
 import time
 
-indexes = [i for i in range(50)]
-A = [i for i in indexes]
-times = [[0 for i in indexes] for j in indexes]
+indexes = [i for i in range(0, 100000, 1000)]
+A = [i for i in range(1, 100000)]
+times = [[0 for i in range(len(indexes))] for j in range(len(indexes))]
 
-for j in indexes:
-    for i in indexes:
-        start = time.process_time_ns()
-        A.pop(i)
-        stop = time.process_time_ns()
+for j in range(len(indexes)):
+    for i in range(len(indexes)):
+        start = time.process_time()
+        A.pop(indexes[i])
+        stop = time.process_time()
 
-        A.insert(i, random.randint(-50,50))
+        A.insert(indexes[i], random.randint(-50,50))
         times[i][j] = stop-start
 
-avg = [sum(times[i])/len(indexes) for i in indexes]
+avg = [sum(times[i])/len(indexes) for i in range(len(indexes))]
+    
 
 import matplotlib.pyplot as plt
-plt.scatter(indexes, avg)
+from scipy.optimize import curve_fit
+import numpy as np
+
+plt.plot(indexes, avg, label='pop')
+plt.xlabel('Index of popped element')
+plt.ylabel('Time')
+plt.legend()
+plt.show()
+
+def f(x, a, b):     return x*a + b
+
+popt, pcov = curve_fit(f, indexes, avg)
+a, b = popt[0], popt[1]
+
+x = np.linspace(1, 110000)
+
+plt.clf()
+plt.plot(x, f(x, a, b), label='Pop - model', color='orange')
+plt.scatter(indexes, avg, label='Pop', s=20)
+
+plt.xlabel('Index of popped element')
+plt.ylabel('Time')
+plt.legend()
 plt.show()
