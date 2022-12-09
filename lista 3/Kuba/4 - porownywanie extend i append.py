@@ -12,14 +12,14 @@ for j in list_lengths:
 
         appended_list = [random.randint(-20, 20) for j in range(i)]
 
-        start_e = time.process_time()
+        start_e = time.perf_counter()
         B.extend(appended_list)
-        stop_e = time.process_time()
+        stop_e = time.perf_counter()
 
-        start_a = time.process_time()
+        start_a = time.perf_counter()
         for element in appended_list:
             C.append(element)
-        stop_a = time.process_time()
+        stop_a = time.perf_counter()
 
         extend_times[i][j] = stop_e-start_e
         append_times[i][j] = stop_a-start_a

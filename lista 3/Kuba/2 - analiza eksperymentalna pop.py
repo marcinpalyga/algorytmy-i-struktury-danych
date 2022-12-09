@@ -7,9 +7,9 @@ times = [[0 for i in range(len(indexes))] for j in range(len(indexes))]
 
 for j in range(len(indexes)):
     for i in range(len(indexes)):
-        start = time.process_time()
+        start = time.perf_counter()
         A.pop(indexes[i])
-        stop = time.process_time()
+        stop = time.perf_counter()
 
         A.insert(indexes[i], random.randint(-50,50))
         times[i][j] = stop-start
