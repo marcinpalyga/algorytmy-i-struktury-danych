@@ -30,12 +30,12 @@ plt.show()
 def f(x, a, b):     return x*a + b
 
 popt, pcov = curve_fit(f, indexes, avg)
-a, b = popt[0], popt[1]
+
 
 x = np.linspace(1, 100000)
 
 plt.clf()
-plt.plot(x, f(x, a, b), label='Pop - model', color='orange')
+plt.plot(x, f(x, *popt), label='Pop - model', color='orange')
 plt.scatter(indexes, avg, label='Pop', s=20)
 
 plt.xlabel('Index of popped element')

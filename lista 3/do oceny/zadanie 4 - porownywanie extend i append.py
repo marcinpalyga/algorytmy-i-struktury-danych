@@ -43,15 +43,13 @@ plt.show()
 def func(x, a, b):    return x*a + b
 
 a_popt, a_pcov = curve_fit(func, list_lengths, avg_append)
-a_a, a_b = a_popt[0], a_popt[1]
 e_popt, e_pcov = curve_fit(func, list_lengths, avg_extend)
-e_a, e_b = e_popt[0], e_popt[1]
 
 x = np.linspace(1, 50)
 
 plt.clf()
-plt.plot(x, func(x, a_a, a_b), label='Append - model')
-plt.plot(x, func(x, e_a, e_b), label='Extend - model')
+plt.plot(x, func(x, *a_popt), label='Append - model')
+plt.plot(x, func(x, *e_popt), label='Extend - model')
 
 plt.scatter(list_lengths, avg_append, label='Append', s=20)
 plt.scatter(list_lengths, avg_extend, label='Extend', s=20)

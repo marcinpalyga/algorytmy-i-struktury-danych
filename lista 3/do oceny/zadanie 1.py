@@ -52,22 +52,23 @@ class DynamicArray:
         self._n += len(seq)
 
     def __str__(self):
-        return f'{self._A}'
+        values = [self._A[i] for i in range(self._n)]
+        return f'{values}'
 
 array = DynamicArray()
 array._make_array(10)
 array.append(1)
-print(array.__str__())
+print(array)
 array.append(2)
-print(array.__str__())
+print(array)
 array.insert(1, 7)
-print(array.__len__())
-print(array.__str__())
+print(len(array))
+print(array)
 array.insert(3, 8)
-print(array.__str__())
+print(array)
 array.remove(2)
-print(array.__str__())
-print(array.__len__())
+print(array)
+print(len(array))
 array.expand([9,8,7])
-print(array.__str__())
-print(array.__len__())
+print(array)
+print(len(array))

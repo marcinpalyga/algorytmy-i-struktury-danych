@@ -40,14 +40,9 @@ def checkHTML(text):
     parser.feed(text)
     endings_check = [f'</{i}>' for i in parser.startings]
     startings_check = [f'<{i}>' for i in parser.startings]
-    print(parser.startings)
-    print(endings_check)
-    print(startings_check)
-    print(parser.endings)
     x = text.split()
     for element in x:
         if element in startings_check:
-            print(element)
             stack.push(element)
         if element in parser.endings:
             if stack.is_empty():

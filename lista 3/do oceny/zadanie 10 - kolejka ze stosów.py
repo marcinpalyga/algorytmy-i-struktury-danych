@@ -1,5 +1,4 @@
-class Empty(Exception):
-    pass
+import queue
 
 class Stack:
     def __init__(self):
@@ -16,12 +15,12 @@ class Stack:
         
     def top(self):
         if self.is_empty():
-            raise Empty('Stack is empty')
+            raise queue.Empty('Stack is empty')
         return self._data[-1]
     
     def pop(self):
         if self.is_empty():
-            raise Empty('Stack is empty')
+            raise queue.Empty('Stack is empty')
         return self._data.pop()
 
 class Queue:
@@ -41,15 +40,13 @@ class Queue:
         self.Stack_dequeue._data = self.Stack_enqueue._data.copy()
         self.Stack_dequeue._data.reverse()
 
-    def _data(self):
-        return self.Stack_enqueue._data
 
-if __name__ == "__main__":
-    queue = Queue()
-    for i in range(10):
-        queue.enqueue(i)
-        print(queue._data())
 
-    for i in range(10):
-        queue.dequeue()
-        print(queue._data())
+queue = Queue()
+for i in range(10):
+    queue.enqueue(i)
+    print(queue.Stack_enqueue._data)
+
+for i in range(10):
+    queue.dequeue()
+    print(queue.Stack_enqueue._data)

@@ -23,11 +23,11 @@ class Queue:
     def dequeue(self):
         if self.is_empty():
             raise Empty('Queue is empty')
-        if self._size < Queue.DEFAULT_CAPACITY/2:
+        if self._size < Queue.DEFAULT_CAPACITY//2:
             for element in self._data:
                 if element == None:
                     self._data = self._data[:self._data.index(element)] + self._data[self._data.index(element)+1:]
-            Queue.DEFAULT_CAPACITY = len(self._data)
+            Queue.DEFAULT_CAPACITY = Queue.DEFAULT_CAPACITY//2
         value = self._data[self._front]
         self._data[self._front] = None
         self._front = (self._front+1)%len(self._data)
@@ -62,5 +62,5 @@ a.enqueue(2)
 a.dequeue()
 a.enqueue(3)
 a.dequeue()
-print(a.__str__())
+print(a)
 print(a.DEFAULT_CAPACITY)
