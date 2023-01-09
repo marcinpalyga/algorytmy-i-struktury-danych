@@ -411,7 +411,7 @@ class ExpressionTree(LinkedBinaryTree):
         else:
             op = p.element()
 
-            if op in '+':
+            if op == '+':
                 L = self._calc_derivative(self.left(p), var)
                 R = self._calc_derivative(self.right(p), var)
                 return self._add_simp(L, R)
