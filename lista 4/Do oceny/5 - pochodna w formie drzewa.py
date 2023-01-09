@@ -500,7 +500,7 @@ def build_expression_tree(tokens):
 
 if __name__ == '__main__':
 
-    expression = '(2*x)'
+    expression = '((1-x)/x)'
     
     expr = build_expression_tree(tokenize(expression))
     print('f(x) =', expr)
